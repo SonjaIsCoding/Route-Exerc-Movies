@@ -7,6 +7,7 @@ import { RootLayout } from "./components/RootLayout.jsx";
 import { Movies } from "./components/Movies/Movies.jsx";
 import { Actors } from "./components/Actors/Actors.jsx";
 import { Home } from "./components/Home/Home.jsx";
+import { ActorDetails } from "./components/Actors/ActorDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
+        // default
         index: true,
         element: <Home />,
       },
@@ -23,7 +25,16 @@ const router = createBrowserRouter([
       },
       {
         path: "actors",
-        element: <Actors />,
+        children: [
+          {
+            index: true,
+            element: <Actors />,
+          },
+          {
+            path: ":id",
+            element: <ActorDetails />,
+          },
+        ],
       },
     ],
   },
